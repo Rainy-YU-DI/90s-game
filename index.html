@@ -33,46 +33,215 @@
       display: inline-block;
       font-size: 80px;
       color: gray;
-      margin-top: 50px;
+      margin-top: 170px;
       padding: 0px;
       margin-bottom: 0px;
+      font-family: fantasy;
+    }
+    .title::before {
+      content: '';
+      display: inline-block;
+      width: 27px;
+      height: 7px;
+      background-color: gray;
+      vertical-align: middle;
+      margin-right: 40px;
+    }
+    .title::after {
+      content: '';
+      display: inline-block;
+      width: 27px;
+      height: 7px;
+      background-color: gray;
+      vertical-align: middle;
+      margin-left: 40px;
     }
     .person01 {
       position: absolute;
       display: block;
-      margin-bottom: 200px;
+      bottom: 0px;
       margin-left: 50px;
-      width: 300px;
-      height: 380px;
+      width: 250px;
+      height: 290px;
     }
     .person02 {
       position: absolute;
       display: block;
       margin-bottom: 0px;
-      left: 500px;
+      bottom: 0px;
+      margin-left: 350px;
+      width: 200px;
+      height: 235px;
     }
     .start {
       position: relative;
-      display: inline-block;
-      font-size: 80px;
+      display: block;
+      font-size: 30px;
       color: gray;
-      margin-top: 50px;
       padding: 0px;
-      margin-top: 0px;
-      width: 300px;
+      width: 140px;
+      height: 50px;
+      background-color: rgb(248, 237, 84);
+      border-radius: 10px;
+      margin: 20px auto 0px;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+    }
+    .star > span {
+      position: relative;
+      display: inline;
+    }
+    .icemountain {
+      position: absolute;
+      display: inline-block;
+      width: 450px;
+      height: 350px;
+      margin-right: 0px;
+      right: 0px;
+      bottom: 0px;
+    }
+    .choose {
+      position: absolute;
+      display: none;
+      width: 1200px;
+      height: 600px;
+      margin: 0px;
+      padding: 0px;
+      text-align: center;
+    }
+    .go {
+      position: relative;
+      display: block;
+      font-size: 30px;
+      color: gray;
+      padding: 0px;
+      width: 140px;
+      height: 50px;
+      background-color: rgb(248, 237, 84);
+      border-radius: 10px;
+      margin: 120px auto 0px;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+    }
+    .choose01 {
+      left: 200px;
+    }
+    .choose02 {
+      left: 350px;
+    }
+    .arrow {
+      position: relative;
+      display: block;
+      width: 100px;
       height: 100px;
-      background-color: yellow;
-      border-radius: 20px;
+      margin-top: 20px;
+      margin-left: 325px;
+    }
+    .play {
+      position: absolute;
+      display: none;
+      width: 1200px;
+      height: 600px;
+      margin: 0px;
+      padding: 0px;
+      overflow: hidden;
+    }
+    .small_ice02 {
+      position: absolute;
+      display: inline-block;
+      width: 100px;
+      height: 130px;
+      left: 400px;
+      top: 200px;
+    }
+    .small_ice01 {
+      position: absolute;
+      display: inline-block;
+      width: 180px;
+      height: 160px;
+      left: 880px;
+      bottom: -50px;
+    }
+    .fish {
+      position: absolute;
+      display: inline-block;
+      width: 80px;
+      height: 50px;
+      left: 700px;
+      bottom: 80px;
+    }
+    .run {
+      position: absolute;
+      display: inline-block;
+      width: 200px;
+      height: 100px;
+      left: 100px;
+      bottom: 130px;
     }
   </style>
+  <script type="text/javascript">
+    window.onload = function() {
+      var start = document.querySelector('.start');
+      var menu = document.querySelector('.menu');
+      var choose = document.querySelector('.choose');
+      var go = document.querySelector('.go');
+      var play = document.querySelector('.play');
+      start.addEventListener('click', function() {
+        menu.style.setProperty('display', 'none');
+        choose.style.setProperty('display', 'inline-block');
+      });
+      go.addEventListener('click', function() {
+        choose.style.setProperty('display', 'none');
+        play.style.setProperty('display', 'inline-block');
+      });
+      document.onkeyup = grabEvent;
+      function grabEvent() {
+        var arrow = document.querySelector('.arrow');
+        var run = document.querySelector('.run');
+        var a;
+        var keycode = event.which || event.keyCode;
+        switch (keycode) {
+          case 37: //left功能；
+            arrow.style.setProperty('margin-left', '325px');
+            a = 1;
+            break;
+          case 39: //right
+            arrow.style.setProperty('margin-left', '740px');
+            a = 2;
+        }
+        if (a == 1) {
+          run.setAttribute('src', 'img/run_bear.png');
+        } else if (a == 2) {
+          run.setAttribute('src', 'img/run_penguin.png');
+        }
+      }
+    };
+  </script>
   <body>
     <div>
       <div class="menu">
         <img class="img_morning" src="img/morning.png" />
         <p class="title">HELP ME GO HOME</p>
-        <div class="start">START</div>
+        <div class="start"><span>START</span></div>
         <img class="person01" src="img/person01.png" />
         <img class="person02" src="img/person02.png" />
+        <img class="icemountain" src="img/icemountain.png" />
+      </div>
+      <div class="choose">
+        <img class="img_morning" src="img/morning.png" />
+        <div class="go"><span>GO!</span></div>
+        <img class="arrow" src="img/arrow.png" />
+        <img class="person01 choose01" src="img/person01.png" />
+        <img class="person02 choose02" src="img/person02.png" />
+      </div>
+      <div class="play">
+        <img class="img_morning" src="img/morning.png" />
+        <img class="small_ice02" src="img/small_ice02.png" />
+        <img class="small_ice01" src="img/small_ice01.png" />
+        <img class="run" src="img/run_bear.png" />
+        <img class="fish" src="img/fish.png" />
       </div>
     </div>
   </body>
